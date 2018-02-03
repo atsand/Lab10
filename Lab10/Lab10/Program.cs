@@ -10,8 +10,8 @@ namespace Lab10
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the movie list app!");
-            PrintList(GetCategory());
+            Console.WriteLine("Welcome to the movie list app!\n");
+            PrintList();
         }
 
         public static List<Movie> MakeList()
@@ -19,7 +19,7 @@ namespace Lab10
             Movie movie1 = new Movie("The Shawshank Redemption", "Drama");
             Movie movie2 = new Movie("The Godfather", "Drama");
             Movie movie3 = new Movie("The Dark Knight", "Action");
-            Movie movie4 = new Movie("12 Angre Men", "Drama");
+            Movie movie4 = new Movie("12 Angry Men", "Drama");
             Movie movie5 = new Movie("Schindler's List", "Drama");
             Movie movie6 = new Movie("The Lord of the Rings: The Return of the King", "Fantasy");
             Movie movie7 = new Movie("Inception", "Action");
@@ -33,7 +33,7 @@ namespace Lab10
             Movie movie15 = new Movie("Ice Age", "Animated");
             Movie movie16 = new Movie("Toy Story","Animated");
             Movie movie17 = new Movie("Finding Nemo", "Animated");
-            Movie movie18 = new Movie("Balde Runner", "Sci-fi");
+            Movie movie18 = new Movie("Blade Runner", "Sci-fi");
             Movie movie19 = new Movie("Star Wars", "Sci-fi");
             List<Movie> Movies = new List<Movie> { movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10,
             movie11, movie12, movie13, movie14, movie15, movie16, movie17, movie18, movie19};
@@ -45,22 +45,26 @@ namespace Lab10
         {
             string input;
             int inputInt;
-            List<string> categories = new List<string>() {"Animated", "Drama", "Horror", "Sci-fi" };
-            Console.WriteLine("Enter the number of the genre below to see movies of that style:\n1 Animated\n2 Drama\n3 Horror\n4 Sci-fi");
+            List<string> categories = new List<string>() {"Animated", "Drama", "Horror", "Sci-fi", "Fantasy", "Action" };
+            Console.WriteLine("Enter the number of the genre below to see movies of that style:\n1) Animated\n2) Drama\n3) Horror\n4) Sci-fi\n5) Fantasy\n6) Action");
             input = Console.ReadLine();
-            if (int.TryParse(input, out inputInt))
+            if (int.TryParse(input, out inputInt) && int.Parse(input)>0 && int.Parse(input)<=categories.Count)
             {
-                Console.WriteLine(categories[inputInt - 1]);
+                Console.WriteLine("\n============================");
+                Console.WriteLine(categories[inputInt - 1] + " movies");
+                Console.WriteLine("============================");
                 return categories[inputInt - 1];
             }
             else
             {
-               return GetCategory();
+                Console.WriteLine("\nInvalid input.\n");
+                return GetCategory();
             }
         }
 
-        public static void PrintList(string category)
+        public static void PrintList()
         {
+            string category = GetCategory();
             List<Movie> movieList = MakeList();
             List<string> movieMatch = new List<string>();
             foreach (Movie m in movieList)
@@ -82,16 +86,17 @@ namespace Lab10
         {
             string input;
 
-            Console.WriteLine("Would you like to continue? (Y/N)");
+            Console.WriteLine("\nWould you like to continue? (Y/N)");
             input = Console.ReadLine().ToLower();
 
             if (input == 'y'.ToString())
             {
-                GetCategory();
+                Console.WriteLine();
+                PrintList();
             }
             else if (input == 'n'.ToString())
             {
-                Console.WriteLine("Goodbye");
+                Console.WriteLine("\nGoodbye\n");
                 return;
             }
             else
