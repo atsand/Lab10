@@ -35,10 +35,10 @@ namespace Lab10
             Movie movie17 = new Movie("Finding Nemo", "Animated");
             Movie movie18 = new Movie("Blade Runner", "Sci-fi");
             Movie movie19 = new Movie("Star Wars", "Sci-fi");
-            List<Movie> Movies = new List<Movie> { movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10,
+            List<Movie> movies = new List<Movie> { movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10,
             movie11, movie12, movie13, movie14, movie15, movie16, movie17, movie18, movie19};
             
-            return Movies;
+            return movies;
         }
 
         public static string GetCategory()
